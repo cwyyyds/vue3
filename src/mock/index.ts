@@ -31,7 +31,6 @@ const mock: Array<MockMethod> = [
         data: {
           access_token: 'a123456',
         },
-        access_token: '42B7C50BD79E4C19B764792259F1CAC6',
       }
     },
   },
