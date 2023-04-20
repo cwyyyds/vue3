@@ -1,0 +1,72 @@
+{
+  "id": "3959811",
+  "name": "vue3",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1179892",
+      "name": "叉号",
+      "font_class": "chahao",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "4657691",
+      "name": "展开",
+      "font_class": "zhankai-",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "857684",
+      "name": "角色管理",
+      "font_class": "yidongyunkongzhitaiicon45",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "11672367",
+      "name": "系统用户管理",
+      "font_class": "xitongyonghuguanli",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "12884221",
+      "name": "系统管理",
+      "font_class": "xitongguanli",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "12889884",
+      "name": "系统管理-菜单管理",
+      "font_class": "xitongguanli-caidanguanli",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "3456455",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
+      "icon_id": "25620277",
+      "name": "睁眼",
+      "font_class": "zhengyan",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "25620294",
+      "name": "闭眼",
+      "font_class": "biyan",
+      "unicode": "e72e",
+      "unicode_decimal": 59182
+    }
+  ]
+}

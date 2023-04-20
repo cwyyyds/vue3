@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "composite": true, // 添加该选项,含义是：工程可以被引用，并且可以增量编译
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"] //属性作用是指定编译需要编译的文件或目录。
+}
