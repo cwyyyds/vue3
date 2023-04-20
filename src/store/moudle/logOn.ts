@@ -5,7 +5,7 @@ const logOn = defineStore('logOn', {
   // 其它配置项
   state: () => {
     return {
-      token: getToken(),
+      token: getToken(), //浏览器关闭后重进需要重新录入
     }
   },
   actions: {
