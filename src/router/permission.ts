@@ -4,12 +4,12 @@ import store from '@/store'
 
 const whiteList = ['/login', '/404'] //白名单
 router.beforeEach(async (to, from, next) => {
-  const { logOnStore, userStore } = store()
+  const { logOnStore } = store()
   const token = logOnStore.token
   if (token) {
-    if (userStore.isRefresh) {
+    if (logOnStore.isRefresh) {
       // 刷新后需要重新添加路由
-      await userStore.handleRoutes(userStore.asyncRouter)
+      await logOnStore.handleRoutes(logOnStore.asyncRouter)
       // 这个重定向非常重要，否则跳转不生效
       next({
         path: to.path, // 动态添加一个新的路由

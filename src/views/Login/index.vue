@@ -85,7 +85,7 @@ export default defineComponent({
   setup() {
     const { login } = reactive(new loginData())
     // 解耦pinia模块
-    const { userStore, logOnStore } = store()
+    const { logOnStore } = store()
     // 获取路由
     const router = useRouter()
 
@@ -136,7 +136,7 @@ export default defineComponent({
       try {
         await logOnStore.setToken()
         const { data: menu } = await getMenu() //获取用户路由
-        userStore.setAsyncRouter(menu.menus)
+        logOnStore.setAsyncRouter(menu.menus)
 
         ElMessage({
           message: '登录成功',
