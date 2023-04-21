@@ -68,7 +68,7 @@ export default defineComponent({
     let isCollapse = ref(false)
     let isZoomButton = ref(false)
     // 实例化容器
-    const { userStore, tabBarStore } = store()
+    const { logOnStore, tabBarStore } = store()
 
     // 展开关闭以及logo动画样式
     const zoomButtonFn = () => {
@@ -85,7 +85,7 @@ export default defineComponent({
     }
 
     // 拿到后端返回的路由信息
-    const sideberRouter = toRaw(userStore.asyncRouter)
+    const sideberRouter = toRaw(logOnStore.asyncRouter)
     const activeIndex = ref('1') //默认首页
 
     //点击到展开的子菜单会触发
