@@ -50,8 +50,6 @@
           <span class="menuTitle"> {{ item['menuName'] }}</span>
         </el-menu-item>
       </el-sub-menu>
-
-      <el-menu-item index="/login"> login </el-menu-item>
     </el-menu>
   </div>
 </template>
