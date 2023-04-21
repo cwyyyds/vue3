@@ -33,4 +33,9 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
 }
+.right {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
 </style>
