@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div @click="exit()">
+    <div @click="quit()">
       <i class="iconfont icon-tuichu"></i>
     </div>
   </div>
@@ -8,15 +8,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import store from '@/store'
 export default defineComponent({
   setup() {
-    const exit = () => {
+    const { logOnStore } = store()
+    const quit = () => {
       console.log('退出')
+      logOnStore.quitOn()
     }
 
     return {
-      exit,
+      quit,
     }
   },
 })

@@ -3,6 +3,7 @@ import { loginOn } from '@/api'
 import { getToken, setToken, removeToken, setTokenTime } from '@/utils/auth'
 import router from '../../router'
 import layout from '../../views/Layout/index.vue'
+import { ElMessage } from 'element-plus'
 const logOn = defineStore('logOn', {
   persist: {
     // 修改存储中使用的键名称，默认为当前 Store的 id
@@ -21,7 +22,8 @@ const logOn = defineStore('logOn', {
     }
   },
   actions: {
-    async setToken() {
+    // 登录
+    async logOn() {
       console.log('登录')
       const { data, msg } = await loginOn()
       this.token = data.access_token
@@ -30,11 +32,23 @@ const logOn = defineStore('logOn', {
       console.log('保存成功')
     },
 
+    // 退出
+    quitOn() {
+      this.token = ''
+      this.asyncRouter = []
+      removeToken()
+      router.push('/login')
+      ElMessage.success('退出成功')
+    },
+
+    // 获取路由信息
     setAsyncRouter(menus: any) {
       console.log('保存动态路由', menus, router)
       this.asyncRouter = menus
       this.handleRoutes(menus)
     },
+
+    // 处理路由信息
     handleRoutes(menu: any) {
       this.isRefresh = false //进入后不需要重新获取
       const recurrenceRouter = (childern: any, url: string) => {

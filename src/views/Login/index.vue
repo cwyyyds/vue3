@@ -134,7 +134,7 @@ export default defineComponent({
     // 登录按钮
     const loginFn = async (formEl: FormInstance | undefined) => {
       try {
-        await logOnStore.setToken()
+        await logOnStore.logOn()
         const { data: menu } = await getMenu() //获取用户路由
         logOnStore.setAsyncRouter(menu.menus)
 
@@ -144,7 +144,10 @@ export default defineComponent({
         })
         router.push('/')
       } catch (e) {
-        e
+        ElMessage({
+          message: '登录失败',
+          type: 'error',
+        })
       }
     }
 
