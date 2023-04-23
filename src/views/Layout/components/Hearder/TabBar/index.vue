@@ -41,8 +41,8 @@ export default defineComponent({
       router.push(`${tabBarArray.value[number].path}`)
     }
     const changeShowTabBar = (obj: any) => {
-      tabBarStore.showTabBar = obj.name
-      console.log(obj.path)
+      tabBarStore.showTabBar = obj.name //标签页展示样式
+      tabBarStore.showMenu = obj.path //当前展示的菜单
       router.push(obj.path)
     }
     return {

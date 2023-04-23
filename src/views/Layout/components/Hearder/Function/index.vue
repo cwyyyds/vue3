@@ -11,10 +11,11 @@ import { defineComponent } from 'vue'
 import store from '@/store'
 export default defineComponent({
   setup() {
-    const { logOnStore } = store()
+    const { logOnStore, tabBarStore } = store()
     const quit = () => {
       console.log('退出')
       logOnStore.quitOn()
+      tabBarStore.resetting()
     }
 
     return {

@@ -1,17 +1,34 @@
 import { defineStore } from 'pinia'
 
 const tabBar = defineStore('tabBarArray', {
-  // 开启数据持久化
-  persist: true,
   // 其它配置项
   state: () => {
     return {
       tabBarArray: new Array<{ path: string; name: string }>(),
-      showTabBar: '', //当前路由展示样式
+      showTabBar: '', //标签页展示样式
       menuIndex: 1, //当前菜单index
+      showMenu: '/homePage', //当前展示的菜单
     }
   },
+
+  // 开启数据持久化
+  persist: {
+    // 修改存储中使用的键名称，默认为当前 Store的 id
+    key: 'tabBar',
+    // 修改为 sessionStorage，默认为 localStorage
+    // storage: sessionStorage,
+    // 部分持久化状态的点符号路径数组，[]意味着没有状态被持久化(默认为undefined，持久化整个状态)
+    paths: ['tabBarArray', 'showTabBar', 'menuIndex', 'showMenu'],
+  },
+
   actions: {
+    // 数据重置
+    resetting() {
+      this.tabBarArray = new Array<{ path: string; name: string }>()
+      this.showTabBar = ''
+      this.menuIndex = 1
+      this.showMenu = '/homePage'
+    },
     setTabBar(path: string, name: string) {
       const index = this.tabBarArray.findIndex((item) => {
         return item.path === path
@@ -24,6 +41,8 @@ const tabBar = defineStore('tabBarArray', {
         this.tabBarArray.push(obj)
       }
       this.showTabBar = name //当前选中的路由
+      this.showMenu = path
+      console.log(this.showTabBar)
     },
 
     // 关闭选中项

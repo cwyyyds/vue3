@@ -12,7 +12,7 @@
     </div>
 
     <el-menu
-      :default-active="activeIndex"
+      :default-active="showMenu"
       class="el-menu-demo Sidebar"
       mode="vertical"
       :collapse="isCollapse"
@@ -56,6 +56,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+// 保持其响应式
+import { storeToRefs } from 'pinia'
 // 导入 pinia 实例
 import store from '@/store'
 //第一种获取target值的方式，通过vue中的响应式对象可使用toRaw()方法获取原始对象
@@ -69,6 +71,7 @@ export default defineComponent({
     let isZoomButton = ref(false)
     // 实例化容器
     const { logOnStore, tabBarStore } = store()
+    const { showMenu } = storeToRefs(tabBarStore)
 
     // 展开关闭以及logo动画样式
     const zoomButtonFn = () => {
@@ -86,18 +89,16 @@ export default defineComponent({
 
     // 拿到后端返回的路由信息
     const sideberRouter = toRaw(logOnStore.asyncRouter)
-    const activeIndex = ref('1') //默认首页
 
     //点击到展开的子菜单会触发
     const tabBarFn = (path: string, name: string, fatherPath: string) => {
       tabBarStore.setTabBar(`${fatherPath}${path}`, name)
     }
-    console.log(123)
 
     return {
       angle,
+      showMenu,
       oldAngle,
-      activeIndex,
       isCollapse,
       sideberRouter,
       isZoomButton,

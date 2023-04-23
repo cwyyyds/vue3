@@ -7,6 +7,7 @@ router.beforeEach(async (to, from, next) => {
   const { logOnStore } = store()
   const token = logOnStore.token
   if (token) {
+    console.log(logOnStore.isRefresh, token)
     if (logOnStore.isRefresh) {
       // 刷新后需要重新添加路由
       await logOnStore.handleRoutes(logOnStore.asyncRouter)
