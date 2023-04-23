@@ -246,7 +246,9 @@ h2 {
 .eye {
   position: absolute;
   right: 0;
-  top: -8px;
+  top: -4px;
+  font-size: 30px;
+  color: #fff;
   &:hover {
     transform: translateY(-2px);
   }
