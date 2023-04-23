@@ -63,9 +63,12 @@ const tabBar = defineStore('tabBarArray', {
           if (index == 0) {
             this.showTabBar =
               this.tabBarArray[`${this.tabBarArray.length - 1}`].name //删除的项位于第一个位置的时候，样式会转移到最后一位
+            this.showMenu =
+              this.tabBarArray[`${this.tabBarArray.length - 1}`].path
             number = this.tabBarArray.length - 2 //长度比索引大一，去除一项后又要减一，所以减二
           } else {
             this.showTabBar = this.tabBarArray[`${index - 1}`].name //其他情况删除的时候样式会到前面一位
+            this.showMenu = this.tabBarArray[`${index - 1}`].path
             number = index - 1
           }
         }
