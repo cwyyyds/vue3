@@ -29,6 +29,8 @@ const tabBar = defineStore('tabBarArray', {
       this.menuIndex = 1
       this.showMenu = '/homePage'
     },
+
+    // 保存选中路由
     setTabBar(path: string, name: string) {
       const index = this.tabBarArray.findIndex((item) => {
         return item.path === path

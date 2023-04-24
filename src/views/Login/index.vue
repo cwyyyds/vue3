@@ -85,7 +85,7 @@ export default defineComponent({
   setup() {
     const { login } = reactive(new loginData())
     // 解耦pinia模块
-    const { logOnStore } = store()
+    const { logOnStore, tabBarStore } = store()
     // 获取路由
     const router = useRouter()
 
@@ -134,6 +134,7 @@ export default defineComponent({
     // 登录按钮
     const loginFn = async (formEl: FormInstance | undefined) => {
       try {
+        await tabBarStore.resetting()
         await logOnStore.logOn()
         const { data: menu } = await getMenu() //获取用户路由
         logOnStore.setAsyncRouter(menu.menus)
