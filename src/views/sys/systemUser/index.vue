@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <ceshi></ceshi>
+    <CeShi></CeShi>
   </div>
 </template>
 
