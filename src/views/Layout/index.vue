@@ -3,7 +3,9 @@
     <Sidebar></Sidebar>
     <div class="layoutRight">
       <Hearder></Hearder>
-      <MainConetnt></MainConetnt>
+      <main class="mainContent">
+        <MainConetnt></MainConetnt>
+      </main>
     </div>
   </div>
 </template>
@@ -35,5 +37,8 @@ export default defineComponent({
 }
 .layoutRight {
   width: 100%;
+}
+.mainContent {
+  margin: 20px;
 }
 </style>

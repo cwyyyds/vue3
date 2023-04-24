@@ -29,7 +29,6 @@ export default defineComponent({
 .hearder {
   height: 50px;
   background-color: #fff;
-  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
 }
