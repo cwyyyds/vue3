@@ -134,7 +134,7 @@ export default defineComponent({
     // 登录按钮
     const loginFn = async (formEl: FormInstance | undefined) => {
       try {
-        await tabBarStore.resetting()
+        await tabBarStore.resetting() //重置之前缓存标签页
         await logOnStore.logOn()
         const { data: menu } = await getMenu() //获取用户路由
         logOnStore.setAsyncRouter(menu.menus)
