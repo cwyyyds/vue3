@@ -1,7 +1,7 @@
 <template>
   <div style="width: 80vw">
     <el-table
-      :data="tableData.length > 0 ? tableData : []"
+      :data="tableData"
       :border="true"
       default-expand-all
       row-key="menuId"
@@ -22,3 +22,22 @@ getAllMenus()
 
 console.log(tableData)
 </script>
+
+<style lang="scss" scoped>
+/* /deeep/样式穿透*/
+/*1.取消原本展开的旋转动效*/
+:v-deep .el-table__expand-icon {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+/*2.展开按钮未点击的样式是加号带边框*/
+:v-deep .el-table__expand-icon .el-icon-arrow-right:before {
+  content: 'Plus';
+  border: 1px solid #ccc;
+  padding: 1px;
+}
+/*2.按钮已点击展开之后的样式是减号带边框*/
+:v-deep .el-table__expand-icon--expanded .el-icon-arrow-right:before {
+  content: '\e6d8';
+}
+</style>

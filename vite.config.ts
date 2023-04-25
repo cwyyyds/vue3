@@ -6,13 +6,23 @@ import eslintPlugin from 'vite-plugin-eslint'
 // 引入mock
 import { viteMockServe } from 'vite-plugin-mock'
 
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+
 // 引入element plus组件
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-// const resolve = (dir) => path.resolve(__dirname, dir)
+const pathSrc = path.resolve(__dirname, 'src')
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    // 配置路径别名
+    alias: {
+      //设置别名
+      '@': pathSrc,
+    },
+  },
   // root: resolve('./src'),
   base: './', //默认/配置文件的根目录为相对路径
   plugins: [
@@ -27,20 +37,53 @@ export default defineConfig({
     eslintPlugin({
       include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
     }),
+
+    Icons({
+      // scale: 1, // 缩放
+      compiler: 'vue3', // 编译方式
+      // defaultClass: '', // 默认类名
+      // defaultStyle: '', // 默认样式
+      autoInstall: true,
+      // jsx: 'react' // jsx支持
+    }),
+
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      // Auto import functions from Vue, e.g. ref, reactive, toRef...
+      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+      imports: ['vue'],
+
+      resolvers: [
+        // Auto import icon components
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: 'Icon',
+        }),
+        ElementPlusResolver(),
+      ],
+
+      // dts 第一个参数跟上面一样设置为 true 也是会自动生成一个 d.ts 的文件
+      // 第二个参数就是dirs就是配置你的目录，你可以设置src,或者src/componets或者你需要配置的地方的组件让他自动导入，其他的组件不管
+      dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        // Auto register Element Plus components
+        // 自动导入 Element Plus 组件
+        ElementPlusResolver(),
+        IconsResolver({
+          prefix: 'icon', // 自动引入的Icon组件统一前缀，默认为 i，设置false为不需要前缀
+          // {prefix}-{collection}-{icon} 使用组件解析器时，您必须遵循名称转换才能正确推断图标。
+          // alias: { park: 'icon-park' } 集合的别名
+          enabledCollections: ['ep'], // 这是可选的，默认启用 Iconify 支持的所有集合['mdi']
+        }),
+      ],
+
+      // dts 第一个参数跟上面一样设置为 true 也是会自动生成一个 d.ts 的文件
+      // 第二个参数就是dirs就是配置你的目录，你可以设置src,或者src/componets或者你需要配置的地方的组件让他自动导入，其他的组件不管
+      dts: path.resolve(pathSrc, 'components.d.ts'),
     }),
   ],
-  resolve: {
-    // 配置路径别名
-    alias: {
-      //设置别名
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+
   server: {
     port: 8081, //启动端口
     hmr: {
