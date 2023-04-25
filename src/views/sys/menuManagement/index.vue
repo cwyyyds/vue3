@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="shadow">
     <el-table
       ref="tableRef"
       :data="tableData"
@@ -8,7 +8,7 @@
       header-cell-class-name="header"
       :max-height="tableHeight"
     >
-      <el-table-column prop="menuName" label="菜单名称" />
+      <el-table-column fixed prop="menuName" label="菜单名称" />
       <el-table-column label="图标" width="100px" align="center">
         <template #default="scope">
           <el-icon :class="`icon iconfont ${scope.row.styleCode}`"></el-icon>
@@ -30,7 +30,17 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="url" label="路由" width="260px" align="center" />
+
+      <el-table-column prop="url" label="路由" width="260px" align="center">
+        <template #default="scope">
+          <el-tag
+            :type="scope.row.parentid == 0 ? '' : 'success'"
+            effect="light"
+          >
+            {{ scope.row.url }}
+          </el-tag>
+        </template>
+      </el-table-column>
 
       <el-table-column fixed="right" label="操作" width="180px" align="center">
         <template #default>
@@ -50,15 +60,17 @@ const tableRef: any = ref(null)
 // table高度
 const tableHeight = ref()
 
+// 控制tabel距离浏览器底端的距离
 onMounted(() => {
-  // 设置表格初始高度为innerHeight-offsetTop-表格底部与浏览器底部距离85
-  tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 20
+  // 设置表格初始高度为innerHeight-offsetTop-表格底部与浏览器底部距离40
+  tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 40
   // 监听浏览器高度变化
   window.onresize = () => {
-    tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 20
+    tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 40
   }
 })
 
+// 表格数据
 let tableData: any = ref([])
 async function getAllMenus() {
   const { data } = await allMenuList()
@@ -70,6 +82,10 @@ console.log(tableData)
 </script>
 
 <style lang="scss" scoped>
+// 底部阴影
+.shadow {
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.1);
+}
 // 设置icon图标大小
 ::v-deep(.el-icon) {
   font-size: 22px;

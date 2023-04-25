@@ -32,14 +32,14 @@ export default defineComponent({
 .layout {
   width: 100%;
   height: 100%;
-  background-color: #f5f5f5;
   display: flex;
 }
 .layoutRight {
   width: 100%;
+  background-color: #f5f5f5;
 }
 .mainContent {
+  width: 100%;
   padding: 20px;
-  overflow: hidden;
 }
 </style>
