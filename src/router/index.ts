@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/:catchAll(.*)',
+    name: '404',
+    component: () => import('@/views/error/index.vue'),
+  },
 ]
 
 const router = createRouter({

@@ -19,4 +19,6 @@ const app = createApp(App)
 app.use(components)
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
-app.use(router).use(pinia).mount('#app')
+app.use(router).use(pinia)
+// https://blog.csdn.net/Jone_hui/article/details/123041404
+router.isReady().then(() => app.mount('#app'))

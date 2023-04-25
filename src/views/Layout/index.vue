@@ -39,6 +39,7 @@ export default defineComponent({
   width: 100%;
 }
 .mainContent {
-  margin: 20px;
+  padding: 20px;
+  overflow: hidden;
 }
 </style>
