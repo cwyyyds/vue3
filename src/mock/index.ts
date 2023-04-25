@@ -51,9 +51,10 @@ const mock: Array<MockMethod> = [
                 parentid: 1,
                 permission: 'userInfo:view',
                 sortNum: 1,
-                styleCode: 'el-icon-user',
+                styleCode: 'icon-xitongyonghuguanli',
                 url: 'user',
               },
+
               {
                 menuId: 3,
                 menuName: '角色管理',
@@ -61,7 +62,7 @@ const mock: Array<MockMethod> = [
                 parentid: 1,
                 permission: '',
                 sortNum: 2,
-                styleCode: 'el-icon-finished',
+                styleCode: 'icon-jueseguanli',
                 url: 'role',
               },
               {
@@ -71,7 +72,7 @@ const mock: Array<MockMethod> = [
                 parentid: 1,
                 permission: '',
                 sortNum: 3,
-                styleCode: 'el-icon-s-operation',
+                styleCode: 'icon-xitongguanli-caidanguanli',
                 url: 'menu',
               },
               {
@@ -91,7 +92,7 @@ const mock: Array<MockMethod> = [
             parentid: 0,
             permission: 'userInfo:view',
             sortNum: 0,
-            styleCode: 'el-icon-setting',
+            styleCode: 'icon-xitongguanli',
             url: '/sys',
           },
           {
@@ -221,7 +222,7 @@ const mock: Array<MockMethod> = [
                   parentid: 1,
                   resourceType: 1,
                   sortNum: 2,
-                  styleCode: 'icon-yidongyunkongzhitaiicon45',
+                  styleCode: 'icon-jueseguanli',
                   url: '/roleManagement',
                 },
                 {

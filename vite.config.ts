@@ -67,15 +67,16 @@ export default defineConfig({
     }),
     Components({
       resolvers: [
-        // Auto register Element Plus components
-        // 自动导入 Element Plus 组件
-        ElementPlusResolver(),
         IconsResolver({
           prefix: 'icon', // 自动引入的Icon组件统一前缀，默认为 i，设置false为不需要前缀
           // {prefix}-{collection}-{icon} 使用组件解析器时，您必须遵循名称转换才能正确推断图标。
           // alias: { park: 'icon-park' } 集合的别名
           enabledCollections: ['ep'], // 这是可选的，默认启用 Iconify 支持的所有集合['mdi']
         }),
+
+        // Auto register Element Plus components
+        // 自动导入 Element Plus 组件
+        ElementPlusResolver(),
       ],
 
       // dts 第一个参数跟上面一样设置为 true 也是会自动生成一个 d.ts 的文件

@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6714144",
+      "name": "加号（展开）",
+      "font_class": "jiahaozhankai",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "6714145",
+      "name": "减号（收起）",
+      "font_class": "jianhaoshouqi",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
       "icon_id": "35178175",
       "name": "退出-copy",
       "font_class": "tuichu",
@@ -29,7 +43,7 @@
     {
       "icon_id": "857684",
       "name": "角色管理",
-      "font_class": "yidongyunkongzhitaiicon45",
+      "font_class": "jueseguanli",
       "unicode": "e74a",
       "unicode_decimal": 59210
     },
