@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 80vw">
+  <div>
     <el-table
       ref="tableRef"
       :data="tableData"
@@ -32,13 +32,7 @@
       </el-table-column>
       <el-table-column prop="url" label="路由" width="260px" align="center" />
 
-      <el-table-column
-        fixed="right"
-        label="操作"
-        width="180px"
-        min-width="180px"
-        align="center"
-      >
+      <el-table-column fixed="right" label="操作" width="180px" align="center">
         <template #default>
           <el-button link type="primary" size="large">编辑</el-button>
           <el-button link type="danger" size="large">删除</el-button>
@@ -58,10 +52,10 @@ const tableHeight = ref()
 
 onMounted(() => {
   // 设置表格初始高度为innerHeight-offsetTop-表格底部与浏览器底部距离85
-  tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 40
+  tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 20
   // 监听浏览器高度变化
   window.onresize = () => {
-    tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 40
+    tableHeight.value = window.innerHeight - tableRef.value.$el.offsetTop - 20
   }
 })
 
