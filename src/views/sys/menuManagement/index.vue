@@ -5,9 +5,9 @@
       <el-button type="primary" @click="addFn">
         <i
           class="icon iconfont icon-jiahao"
-          style="margin-right: 4px; font-size: 14px"
+          style="margin-right: 4px; font-size: 16px"
         ></i>
-        <span style="font-size: 16px">增加</span>
+        <span class="addSize">增加</span>
       </el-button>
     </div>
     <el-table
@@ -35,6 +35,7 @@
           <el-tag
             :type="scope.row.parentid == 0 ? '' : 'success'"
             effect="dark"
+            class="size"
           >
             {{ scope.row.parentid == 0 ? '一级' : '二级' }}
           </el-tag>
@@ -46,6 +47,7 @@
           <el-tag
             :type="scope.row.parentid == 0 ? '' : 'success'"
             effect="light"
+            class="size"
           >
             {{ scope.row.url }}
           </el-tag>
@@ -54,10 +56,20 @@
 
       <el-table-column fixed="right" label="操作" width="180px" align="center">
         <template #default="scope">
-          <el-button link type="primary" size="large" @click="editFn(scope.row)"
+          <el-button
+            link
+            type="primary"
+            size="large"
+            class="size"
+            @click="editFn(scope.row)"
             >编辑</el-button
           >
-          <el-button link type="danger" size="large" @click="open = false"
+          <el-button
+            link
+            type="danger"
+            size="large"
+            class="size"
+            @click="open = false"
             >删除</el-button
           >
         </template>
@@ -166,14 +178,29 @@ const closeDialog = () => {
 </script>
 
 <style lang="scss" scoped>
+.size {
+  font-size: $size;
+}
+// 首行按钮位置
 .headerFn {
   padding: 10px;
 }
+// 设置按钮字体大小
+.addSize {
+  font-size: $size;
+}
+
 // 底部阴影
 .shadow {
   background-color: #fff;
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.1);
 }
+
+// 表格文字大小
+::v-deep(.el-table__cell) {
+  font-size: $size;
+}
+
 // 设置icon图标大小
 ::v-deep(.el-icon) {
   font-size: 22px;
