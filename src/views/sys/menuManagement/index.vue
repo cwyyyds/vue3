@@ -1,5 +1,10 @@
 <template>
   <div class="shadow">
+    <div class="headerFn">
+      <el-button size="small" type="primary" @click="addFn">
+        <IconEpPlus /> 增加
+      </el-button>
+    </div>
     <el-table
       ref="tableRef"
       :data="tableData"
@@ -55,6 +60,7 @@
     </el-table>
 
     <addOrEdit
+      :type="type"
       :open="open"
       :form-data="form"
       :select-data="selectData"
@@ -91,11 +97,16 @@ async function getAllMenus() {
 }
 getAllMenus()
 
+//区别新增还是编辑
+let type = ref(0)
+
 // 处理新增编辑对话框开关
 let open = ref(false)
 
 // 编辑选中行数据
 let form = ref({})
+
+// 初始化下拉数据
 let selectData: any = ref([
   {
     value: 0,
@@ -103,34 +114,44 @@ let selectData: any = ref([
     children: [],
   },
 ])
-const editFn = (data: object) => {
-  form.value = data
-  function recursion(array: Array<any>, options: any) {
-    console.log('开始循环')
-    for (let i = 0; i < array.length; i++) {
-      // 有子集遍历子集
-      if (array[i].children) {
-        console.log('进入递归')
-        options[i] = {
-          value: array[i].menuId,
-          label: array[i].menuName,
-          children: [],
-        }
-        recursion(array[i].children, options[i].children)
-      } else {
-        options[i] = {
-          value: array[i].menuId,
-          label: array[i].menuName,
-        }
-      }
-    }
-    console.log('循环结束')
-    return
-  }
+
+// 增加按钮
+const addFn = () => {
+  type.value = 0
+  form.value = {}
   recursion(tableData.value, selectData.value[0].children)
-  console.log(selectData.value)
+  open.value = true
+}
+
+// 编辑按钮
+const editFn = (data: object) => {
+  type.value = 1
+  form.value = data
+
+  recursion(tableData.value, selectData.value[0].children)
 
   open.value = true
+}
+
+// 数据处理
+function recursion(array: Array<any>, options: any) {
+  for (let i = 0; i < array.length; i++) {
+    // 有子集遍历子集
+    if (array[i].children) {
+      options[i] = {
+        value: array[i].menuId,
+        label: array[i].menuName,
+        children: [],
+      }
+      recursion(array[i].children, options[i].children)
+    } else {
+      options[i] = {
+        value: array[i].menuId,
+        label: array[i].menuName,
+      }
+    }
+  }
+  return
 }
 
 // 关闭对话框
@@ -140,8 +161,12 @@ const closeDialog = () => {
 </script>
 
 <style lang="scss" scoped>
+.headerFn {
+  padding: 10px;
+}
 // 底部阴影
 .shadow {
+  background-color: #fff;
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.1);
 }
 // 设置icon图标大小

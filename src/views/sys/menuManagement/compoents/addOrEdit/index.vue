@@ -2,7 +2,7 @@
   <div>
     <el-dialog
       v-model="openClose"
-      title="编辑"
+      :title="type ? '编辑' : '新增'"
       width="30%"
       :before-close="handleClose"
     >
@@ -53,20 +53,28 @@ import { ref, defineProps, defineEmits, watch } from 'vue'
 
 // 由父组件控制子组件对话框开关
 const props = defineProps({
+  type: {
+    type: Number,
+    default: 1,
+  },
   // 带有默认值的数字
   open: {
     type: Boolean,
     default: false,
   },
+  // 表单数据
   formData: {
     type: Object,
     default: () => ({}),
   },
+  // 下拉数据
   selectData: {
     type: Array,
     default: () => ref([]),
   },
 })
+
+// 关闭弹窗
 const emit = defineEmits(['closeDialog'])
 
 // 对话框的开关
@@ -93,6 +101,7 @@ watch(
   () => props.formData,
   (newVal, oldVal) => {
     form.value = newVal
+    form.value.sortNum ? '' : (form.value.sortNum = 50)
     value.value = newVal.parentid
   },
 )
@@ -102,7 +111,6 @@ watch(
   () => props.selectData,
   (newVal, oldVal) => {
     data.value = newVal
-    console.log(data.value)
   },
   {
     //如果加了这个参数，值为true的话，就消除了惰性，watch会在创建后立即执行一次
@@ -122,5 +130,13 @@ const handleClose = () => {
 <style scoped>
 .dialog-footer button:first-child {
   margin-right: 10px;
+}
+/* 修改数字输入框上按钮位置 */
+::v-deep(.el-input-number__increase) {
+  top: 2px;
+}
+/* 修改数字输入框下按钮位置 */
+::v-deep(.el-input-number__decrease) {
+  top: 17px;
 }
 </style>

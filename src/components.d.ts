@@ -27,6 +27,8 @@ declare module '@vue/runtime-core' {
     EnterSearchAdd: typeof import('./components/EnterSearchAdd/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IconEpExpand: typeof import('~icons/ep/expand')['default']
+    IconEpPlus: typeof import('~icons/ep/plus')['default']
+    RefreshButton: typeof import('./components/RefreshButton/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

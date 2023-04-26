@@ -53,12 +53,13 @@ export default defineConfig({
       imports: ['vue'],
 
       resolvers: [
+        ElementPlusResolver(),
+
         // Auto import icon components
         // 自动导入图标组件
         IconsResolver({
           prefix: 'Icon',
         }),
-        ElementPlusResolver(),
       ],
 
       // dts 第一个参数跟上面一样设置为 true 也是会自动生成一个 d.ts 的文件
