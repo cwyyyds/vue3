@@ -44,16 +44,24 @@
 
       <el-table-column fixed="right" label="操作" width="180px" align="center">
         <template #default>
-          <el-button link type="primary" size="large">编辑</el-button>
-          <el-button link type="danger" size="large">删除</el-button>
+          <el-button link type="primary" size="large" @click="open = true"
+            >编辑</el-button
+          >
+          <el-button link type="danger" size="large" @click="open = false"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
+
+    <addOrEdit :open="open" @close-dialog="closeDialog"></addOrEdit>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { allMenuList } from '@/api'
+import addOrEdit from './compoents/addOrEdit/index.vue'
 
 // table元素
 const tableRef: any = ref(null)
@@ -78,7 +86,12 @@ async function getAllMenus() {
 }
 getAllMenus()
 
-console.log(tableData)
+// 处理新增编辑对话框开关
+let open = ref(false)
+
+const closeDialog = () => {
+  open.value = false
+}
 </script>
 
 <style lang="scss" scoped>
