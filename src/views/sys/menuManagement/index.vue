@@ -43,8 +43,8 @@
       </el-table-column>
 
       <el-table-column fixed="right" label="操作" width="180px" align="center">
-        <template #default>
-          <el-button link type="primary" size="large" @click="open = true"
+        <template #default="scope">
+          <el-button link type="primary" size="large" @click="editFn(scope.row)"
             >编辑</el-button
           >
           <el-button link type="danger" size="large" @click="open = false"
@@ -54,7 +54,12 @@
       </el-table-column>
     </el-table>
 
-    <addOrEdit :open="open" @close-dialog="closeDialog"></addOrEdit>
+    <addOrEdit
+      :open="open"
+      :form-data="form"
+      :select-data="selectData"
+      @close-dialog="closeDialog"
+    ></addOrEdit>
   </div>
 </template>
 
@@ -89,6 +94,46 @@ getAllMenus()
 // 处理新增编辑对话框开关
 let open = ref(false)
 
+// 编辑选中行数据
+let form = ref({})
+let selectData: any = ref([
+  {
+    value: 0,
+    label: '顶级菜单',
+    children: [],
+  },
+])
+const editFn = (data: object) => {
+  form.value = data
+  function recursion(array: Array<any>, options: any) {
+    console.log('开始循环')
+    for (let i = 0; i < array.length; i++) {
+      // 有子集遍历子集
+      if (array[i].children) {
+        console.log('进入递归')
+        options[i] = {
+          value: array[i].menuId,
+          label: array[i].menuName,
+          children: [],
+        }
+        recursion(array[i].children, options[i].children)
+      } else {
+        options[i] = {
+          value: array[i].menuId,
+          label: array[i].menuName,
+        }
+      }
+    }
+    console.log('循环结束')
+    return
+  }
+  recursion(tableData.value, selectData.value[0].children)
+  console.log(selectData.value)
+
+  open.value = true
+}
+
+// 关闭对话框
 const closeDialog = () => {
   open.value = false
 }
