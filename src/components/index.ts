@@ -1,5 +1,6 @@
 import ceshi from './EnterSearchAdd/index.vue'
-const components = [ceshi]
+import RefreshButton from './RefreshButton/index.vue'
+const components = [ceshi, RefreshButton]
 export default {
   install(app: any) {
     components.forEach((component) => {

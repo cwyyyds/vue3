@@ -1,8 +1,13 @@
 <template>
   <div class="shadow">
     <div class="headerFn">
-      <el-button size="small" type="primary" @click="addFn">
-        <IconEpPlus /> 增加
+      <RefreshButton></RefreshButton>
+      <el-button type="primary" @click="addFn">
+        <i
+          class="icon iconfont icon-jiahao"
+          style="margin-right: 4px; font-size: 14px"
+        ></i>
+        <span style="font-size: 16px">增加</span>
       </el-button>
     </div>
     <el-table
