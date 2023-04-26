@@ -30,16 +30,16 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .layout {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
 }
 .layoutRight {
-  width: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
   background-color: #f5f5f5;
 }
 .mainContent {
-  width: 100%;
   padding: 20px;
 }
 </style>
